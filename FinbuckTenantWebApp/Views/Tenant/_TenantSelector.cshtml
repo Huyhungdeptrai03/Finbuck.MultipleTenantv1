@@ -1,0 +1,10 @@
+﻿@* <form asp-action="SwitchTenant" asp-controller="Tenant" method="post" class="form-inline">
+    <label for="TenantIdentifier">Select Tenant:</label>
+    <select name="TenantIdentifier" class="form-control">
+        @foreach (var tenant in ViewBag.Tenants as List<TenantInfo>)
+        {
+            <option value="@tenant.Identifier">@tenant.Name</option>
+        }
+    </select>
+    <button type="submit" class="btn btn-primary">Switch</button>
+</form> *@

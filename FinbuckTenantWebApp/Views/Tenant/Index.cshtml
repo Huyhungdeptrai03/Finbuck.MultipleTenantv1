@@ -1,0 +1,61 @@
+﻿@model List<TenantInfo>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h1 class="text-primary">Tenant Management</h1>
+        <a href="@Url.Action("Create", "Tenant")" class="btn btn-primary">
+            <i class="bi bi-plus-circle"></i> Create New Tenant
+        </a>
+    </div>
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h5 class="mb-0">Tenant List</h5>
+        </div>
+        <div class="card-body">
+            <table class="table table-hover">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Logo</th>
+                        <th>Id</th>
+                        <th>Identifier</th>
+                        <th>Name</th>
+                        <th>Use Default Connection</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var tenant in Model)
+                    {
+                        <tr>
+                            <td>
+                                <img src="https://via.placeholder.com/50?text=@tenant.Identifier" alt="@tenant.Name Logo" class="rounded-circle" width="50">
+                            </td>
+                            <td>@tenant.Id</td>
+                            <td>@tenant.Identifier</td>
+                            <td>@tenant.Name</td>
+                            <td>
+                                @if (tenant.UseDefaultConnection)
+                                {
+                                    <span class="badge bg-success">Default</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-warning text-dark">Custom</span>
+                                }
+                            </td>
+                            <td>
+                                <a href="@Url.Action("Edit", "Tenant", new { id = tenant.Id })" class="btn btn-sm btn-warning">
+                                    <i class="bi bi-pencil-square"></i> Edit
+                                </a>
+                                <a href="@Url.Action("Delete", "Tenant", new { id = tenant.Id })" class="btn btn-sm btn-danger">
+                                    <i class="bi bi-trash"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
